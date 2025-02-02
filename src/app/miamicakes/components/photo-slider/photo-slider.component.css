@@ -1,0 +1,97 @@
+.slider-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px;
+  background-color: #9F7E7E; /* Color de fondo */
+  padding: 1%;
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+ 
+
+.slider-image {
+  max-height: 500px;
+  height: auto;
+  width: auto;  
+  border-radius: 8px;
+  box-shadow: 1px 2px 5px  black;
+  display: block;
+  margin:10px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: black;
+  color:white;
+  opacity: 0.5;
+  border-radius: 5px;
+  transition: background-color 0.3s ease; /* Agrega una transición suave */
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Miniaturas */
+.thumbnails-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+ 
+  flex-wrap: wrap;
+  padding: 10px;
+  background-color: #9F7E7E; /* Color de fondo */
+}
+
+.thumbnail-wrapper {
+  cursor: pointer;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.thumbnail:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+.thumbnail.active {
+  opacity: 1 !important; /* Fuerza la opacidad */
+  border-color: #ffffff !important;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5) !important;
+  transform: scale(1.05);
+}
+
+/* Estilos responsive para pantallas pequeñas (móviles y tablets) */
+@media (max-width: 768px) {
+  .slider-container {
+    flex-direction: row; /* Cambia la dirección a vertical en móviles */
+    padding: 10px; /* Ajusta el padding para móviles */
+  }
+
+  .slider-image {
+    max-height: 300px; /* Reduce la altura máxima de la imagen en móviles */
+    margin: 10px 0; /* Ajusta el margen para móviles */
+  }
+
+  button {
+    margin: 5px ; /* Ajusta el margen de los botones en móviles */
+    width: 80px; /* Hace que los botones ocupen todo el ancho en móviles */
+    max-width: 200px; /* Limita el ancho máximo de los botones */
+  }
+}

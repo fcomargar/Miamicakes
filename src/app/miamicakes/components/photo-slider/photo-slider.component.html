@@ -1,0 +1,29 @@
+<div class="slider-container">
+  <button (click)="prevImage()"><</button>
+  <div class="slide-wrapper">
+    <img 
+      [src]="images[currentIndex]" 
+      alt="Slider Image" 
+      class="slider-image"
+      [@slideAnimation]="direction"
+    >
+  </div>
+  <button (click)="nextImage()">></button>
+</div>
+
+<!-- Contenedor de miniaturas -->
+<div class="thumbnails-container">
+  <div 
+    *ngFor="let image of images; let i = index" 
+    class="thumbnail-wrapper"
+    (click)="selectImage(i)"
+  >
+    <img 
+      [src]="image" 
+      alt="Thumbnail" 
+      class="thumbnail"
+      [class.active]="i === currentIndex"
+      [style.opacity]="i === currentIndex ? '1' : '0.7'" ><!-- Fuerza actualización -->
+    
+  </div>
+</div>
