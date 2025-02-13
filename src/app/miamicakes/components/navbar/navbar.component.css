@@ -4,13 +4,30 @@
 
 
 /* Estilo general de la barra de navegación */
-.navbar {
+.navbar {  
+  position: fixed; /* Hace que la barra sea fija */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #9F7E7E; /* Color de fondo */
+  background-color: #9F7E7E;
   padding: 10px 20px;
-  border-bottom: 6px solid #F2C4C4; /* Línea inferior */
+  border-bottom: 6px solid #F2C4C4;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+/* Añade padding al body para que el contenido no quede detrás de la barra */
+body {
+  padding-top: 70px; /* Altura aproximada de tu navbar */
+}
+
+.nav-links a.active h2 {
+  color: #f1eca4; /* Cambia el color del texto cuando está activo */
+  
+  
 }
 
 .logo-img {
@@ -110,3 +127,17 @@
     margin-top: 10px; /* Da algo de espacio si el ícono queda debajo */
   }
 }
+
+/* Ajustes responsive para el padding del body */
+@media (max-width: 768px) {
+  body {
+    padding-top: 60px; /* Altura reducida en móviles */
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding-top: 100px; /* Ajusta según la altura de tu navbar en móviles */
+  }
+}
+

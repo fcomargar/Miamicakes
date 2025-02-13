@@ -1,0 +1,110 @@
+/* Fuentes */
+
+
+
+
+/* Estilos base */
+.footer-container {
+  height: 35vh;
+  background-image: url('../../../../assets/Footer.svg');
+  background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  
+  padding: 1.5rem 0;
+  
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.footer-section {
+  padding: 0.5rem 0;
+}
+
+/* Tipografía y enlaces */
+.footer-text {
+  color: #fff;
+  font-weight: 600;
+  margin: 0;
+}
+
+.footer-link {
+  color: #fff;
+  text-decoration: none;
+  transition: text-decoration 0.3s ease;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+/* Layout responsivo */
+@media (min-width: 768px) {
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .footer-section {
+    padding: 0;
+    flex: 1;
+  }
+
+  .footer-contact {
+    text-align: left;
+    min-width: 250px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .footer-copyright {
+    text-align: right;
+    min-width: 200px;
+  }
+}
+
+/* Estilos móvil */
+@media (max-width: 767px) {
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* Redes sociales */
+.footer-social {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.social-link {
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.social-link:hover {
+  color: #4a5568;
+}
+
+.social-link i {
+  font-size: 1.25rem;
+}

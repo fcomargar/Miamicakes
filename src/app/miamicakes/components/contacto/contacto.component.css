@@ -1,0 +1,100 @@
+/* Importar fuente */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+.contact-container {
+    background-color: #9F7E7E;
+    color: white;
+    text-align: center;
+    padding: 30px;
+    border: 6px solid #F2C4C4;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    margin: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.contact-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.contact-description {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #f5e1e1;
+    font-size: 14px;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 15px;
+}
+
+button {
+    background-color: #F2C4C4;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: 'Great Vibes', cursive;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: white;
+}
+
+button:hover {
+    background-color: #ffb6b6;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 4px;
+  }
+  input.ng-invalid.ng-touched,
+  textarea.ng-invalid.ng-touched,
+  select.ng-invalid.ng-touched {
+    border: 2px solid red;
+  }
+  button:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+  }
+  
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .contact-container {
+        width: 95%;
+    }
+}

@@ -1,0 +1,845 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>miamicackes documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">miamicackes documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ContactoComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/miamicakes/components/contacto/contacto.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Contiene un formulario para ingresar datos como email, nombre, sabor, tamaño y mensaje.</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-contacto</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>FormsModule</code>
+                            <code>CommonModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./contacto.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./contacto.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#contacto" >contacto</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#contactoService" >contactoService</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#enviarFormulario" >enviarFormulario</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(router: Router, contactoService: <a href="../injectables/ContactoService.html" target="_self">ContactoService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/miamicakes/components/contacto/contacto.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>Servicio de navegación de Angular.</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>contactoService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ContactoService.html" target="_self" >ContactoService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>Servicio para almacenar los datos del contacto.</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="enviarFormulario"></a>
+                    <span class="name">
+                        <span ><b>enviarFormulario</b></span>
+                        <a href="#enviarFormulario"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>enviarFormulario(form: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/app/miamicakes/components/contacto/contacto.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>form</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Objeto del formulario Angular (ngForm).</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="contacto"></a>
+                    <span class="name">
+                        <span ><b>contacto</b></span>
+                        <a href="#contacto"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    email: &#x27;&#x27;,
+    nombre: &#x27;&#x27;,
+    sabor: &#x27;&#x27;,
+    tamano: &#x27;&#x27;,
+    mensaje: &#x27;&#x27;
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/miamicakes/components/contacto/contacto.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="contactoService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>contactoService</b></span>
+                        <a href="#contactoService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/ContactoService.html" target="_self" >ContactoService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/miamicakes/components/contacto/contacto.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description">- Servicio para almacenar los datos del contacto.</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { ContactoService } from &#x27;../../../service/contacto.service&#x27;;
+
+/**
+ * @component
+ * @description Componente de contacto para solicitar tartas personalizadas.
+ * Contiene un formulario para ingresar datos como email, nombre, sabor, tamaño y mensaje.
+ */
+@Component({
+  standalone: true,
+  imports: [FormsModule, CommonModule],
+  selector: &#x27;app-contacto&#x27;,
+  templateUrl: &#x27;./contacto.component.html&#x27;,
+  styleUrls: [&#x27;./contacto.component.css&#x27;]
+})
+export class ContactoComponent {
+  /**
+   * @property {Object} contacto - Datos del formulario de contacto.
+   * @property {string} contacto.email - Correo electrónico del usuario.
+   * @property {string} contacto.nombre - Nombre del usuario.
+   * @property {string} contacto.sabor - Sabor elegido para la tarta.
+   * @property {string} contacto.tamano - Tamaño de la tarta.
+   * @property {string} contacto.mensaje - Mensaje o descripción de la tarta personalizada.
+   */
+  contacto &#x3D; {
+    email: &#x27;&#x27;,
+    nombre: &#x27;&#x27;,
+    sabor: &#x27;&#x27;,
+    tamano: &#x27;&#x27;,
+    mensaje: &#x27;&#x27;
+  };
+
+  /**
+   * @constructor
+   * @param {Router} router - Servicio de navegación de Angular.
+   * @param {ContactoService} contactoService - Servicio para almacenar los datos del contacto.
+   */
+  constructor(
+    private router: Router,
+    public contactoService: ContactoService
+  ) {}
+
+  /**
+   * @method enviarFormulario
+   * @description Envía el formulario si es válido. Guarda los datos en el servicio y redirige a la página de factura.
+   * @param {any} form - Objeto del formulario Angular (ngForm).
+   */
+  enviarFormulario(form: any) {
+    if (form.valid) {
+      this.contactoService.setDatosContacto(this.contacto);
+      this.router.navigate([&#x27;/factura&#x27;]);
+    } else {
+      alert(&#x27;Por favor, completa todos los campos correctamente.&#x27;);
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- Contenedor principal del formulario de contacto --&gt;
+&lt;div class&#x3D;&quot;contact-container&quot;&gt;
+  &lt;h2 class&#x3D;&quot;contact-title&quot;&gt;Contáctanos&lt;/h2&gt;
+
+  &lt;!-- Descripción del formulario --&gt;
+  &lt;p class&#x3D;&quot;contact-description&quot;&gt;
+    Solicita tus tartas decoradas y personalizables para todos los gustos...
+  &lt;/p&gt;
+
+  &lt;!-- Formulario de contacto --&gt;
+  &lt;form #contactoForm&#x3D;&quot;ngForm&quot; (ngSubmit)&#x3D;&quot;enviarFormulario(contactoForm)&quot;&gt;
+    
+    &lt;!-- Campo de Email --&gt;
+    &lt;div&gt;
+      &lt;label for&#x3D;&quot;email&quot;&gt;Email:&lt;/label&gt;
+      &lt;input type&#x3D;&quot;email&quot; id&#x3D;&quot;email&quot; name&#x3D;&quot;email&quot; [(ngModel)]&#x3D;&quot;contacto.email&quot; required email #email&#x3D;&quot;ngModel&quot;&gt;
+      &lt;div class&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;email.invalid &amp;&amp; email.touched&quot;&gt;
+        &lt;span *ngIf&#x3D;&quot;email.errors?.[&#x27;required&#x27;]&quot;&gt;⚠️ El email es obligatorio.&lt;/span&gt;
+        &lt;span *ngIf&#x3D;&quot;email.errors?.[&#x27;email&#x27;]&quot;&gt;⚠️ Formato de email inválido.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Campo de Nombre --&gt;
+    &lt;div&gt;
+      &lt;label for&#x3D;&quot;nombre&quot;&gt;Nombre:&lt;/label&gt;
+      &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;nombre&quot; name&#x3D;&quot;nombre&quot; [(ngModel)]&#x3D;&quot;contacto.nombre&quot; required minlength&#x3D;&quot;3&quot; #nombre&#x3D;&quot;ngModel&quot;&gt;
+      &lt;div class&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;nombre.invalid &amp;&amp; nombre.touched&quot;&gt;
+        &lt;span *ngIf&#x3D;&quot;nombre.errors?.[&#x27;required&#x27;]&quot;&gt;⚠️ El nombre es obligatorio.&lt;/span&gt;
+        &lt;span *ngIf&#x3D;&quot;nombre.errors?.[&#x27;minlength&#x27;]&quot;&gt;⚠️ Mínimo 4 caracteres requeridos.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Campo de Sabor --&gt;
+    &lt;div&gt;
+      &lt;label for&#x3D;&quot;sabor&quot;&gt;Sabor:&lt;/label&gt;
+      &lt;select id&#x3D;&quot;sabor&quot; name&#x3D;&quot;sabor&quot; [(ngModel)]&#x3D;&quot;contacto.sabor&quot; required #sabor&#x3D;&quot;ngModel&quot;&gt;
+        &lt;option value&#x3D;&quot;&quot; disabled selected&gt;Elige una opción&lt;/option&gt;
+        &lt;option value&#x3D;&quot;chocolate&quot;&gt;Chocolate&lt;/option&gt;
+        &lt;option value&#x3D;&quot;vainilla&quot;&gt;Vainilla&lt;/option&gt;
+        &lt;option value&#x3D;&quot;fresa&quot;&gt;Fresa&lt;/option&gt;
+      &lt;/select&gt;
+      &lt;div class&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;sabor.invalid &amp;&amp; sabor.touched&quot;&gt;
+        &lt;span&gt;⚠️ Debes elegir un sabor.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Campo de Tamaño --&gt;
+    &lt;div&gt;
+      &lt;label for&#x3D;&quot;tamano&quot;&gt;Tamaño:&lt;/label&gt;
+      &lt;select id&#x3D;&quot;tamano&quot; name&#x3D;&quot;tamano&quot; [(ngModel)]&#x3D;&quot;contacto.tamano&quot; required #tamano&#x3D;&quot;ngModel&quot;&gt;
+        &lt;option value&#x3D;&quot;&quot; disabled selected&gt;Elige una opción&lt;/option&gt;
+        &lt;option value&#x3D;&quot;pequeno&quot;&gt;Pequeño&lt;/option&gt;
+        &lt;option value&#x3D;&quot;mediano&quot;&gt;Mediano&lt;/option&gt;
+        &lt;option value&#x3D;&quot;grande&quot;&gt;Grande&lt;/option&gt;
+      &lt;/select&gt;
+      &lt;div class&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;tamano.invalid &amp;&amp; tamano.touched&quot;&gt;
+        &lt;span&gt;⚠️ Debes elegir un tamaño.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Campo de Mensaje --&gt;
+    &lt;div&gt;
+      &lt;label for&#x3D;&quot;mensaje&quot;&gt;Cuéntanos tu idea:&lt;/label&gt;
+      &lt;textarea id&#x3D;&quot;mensaje&quot; name&#x3D;&quot;mensaje&quot; [(ngModel)]&#x3D;&quot;contacto.mensaje&quot; required minlength&#x3D;&quot;12&quot; #mensaje&#x3D;&quot;ngModel&quot;&gt;&lt;/textarea&gt;
+      &lt;div class&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;mensaje.invalid &amp;&amp; mensaje.touched&quot;&gt;
+        &lt;span *ngIf&#x3D;&quot;mensaje.errors?.[&#x27;required&#x27;]&quot;&gt;⚠️ El mensaje es obligatorio.&lt;/span&gt;
+        &lt;span *ngIf&#x3D;&quot;mensaje.errors?.[&#x27;minlength&#x27;]&quot;&gt;⚠️ Mínimo 12 caracteres requeridos.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Botón de envío --&gt;
+    &lt;button type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;contactoForm.invalid&quot;&gt;Solicita tu tarta&lt;/button&gt;
+
+  &lt;/form&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./contacto.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/* Importar fuente */
+@import url(&#x27;https://fonts.googleapis.com/css2?family&#x3D;Great+Vibes&amp;display&#x3D;swap&#x27;);
+
+.contact-container {
+    background-color: #9F7E7E;
+    color: white;
+    text-align: center;
+    padding: 30px;
+    border: 6px solid #F2C4C4;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    margin: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.contact-title {
+    font-family: &#x27;Great Vibes&#x27;, cursive;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.contact-description {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #f5e1e1;
+    font-size: 14px;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 15px;
+}
+
+button {
+    background-color: #F2C4C4;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: &#x27;Great Vibes&#x27;, cursive;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: white;
+}
+
+button:hover {
+    background-color: #ffb6b6;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 4px;
+  }
+  input.ng-invalid.ng-touched,
+  textarea.ng-invalid.ng-touched,
+  select.ng-invalid.ng-touched {
+    border: 2px solid red;
+  }
+  button:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+  }
+  
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .contact-container {
+        width: 95%;
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- Contenedor principal del formulario de contacto --><div class="contact-container">  <h2 class="contact-title">Contáctanos</h2>  <!-- Descripción del formulario -->  <p class="contact-description">    Solicita tus tartas decoradas y personalizables para todos los gustos...  </p>  <!-- Formulario de contacto -->  <form #contactoForm="ngForm" (ngSubmit)="enviarFormulario(contactoForm)">        <!-- Campo de Email -->    <div>      <label for="email">Email:</label>      <input type="email" id="email" name="email" [(ngModel)]="contacto.email" required email #email="ngModel">      <div class="error" *ngIf="email.invalid && email.touched">        <span *ngIf="email.errors?.[\'required\']">⚠️ El email es obligatorio.</span>        <span *ngIf="email.errors?.[\'email\']">⚠️ Formato de email inválido.</span>      </div>    </div>    <!-- Campo de Nombre -->    <div>      <label for="nombre">Nombre:</label>      <input type="text" id="nombre" name="nombre" [(ngModel)]="contacto.nombre" required minlength="3" #nombre="ngModel">      <div class="error" *ngIf="nombre.invalid && nombre.touched">        <span *ngIf="nombre.errors?.[\'required\']">⚠️ El nombre es obligatorio.</span>        <span *ngIf="nombre.errors?.[\'minlength\']">⚠️ Mínimo 4 caracteres requeridos.</span>      </div>    </div>    <!-- Campo de Sabor -->    <div>      <label for="sabor">Sabor:</label>      <select id="sabor" name="sabor" [(ngModel)]="contacto.sabor" required #sabor="ngModel">        <option value="" disabled selected>Elige una opción</option>        <option value="chocolate">Chocolate</option>        <option value="vainilla">Vainilla</option>        <option value="fresa">Fresa</option>      </select>      <div class="error" *ngIf="sabor.invalid && sabor.touched">        <span>⚠️ Debes elegir un sabor.</span>      </div>    </div>    <!-- Campo de Tamaño -->    <div>      <label for="tamano">Tamaño:</label>      <select id="tamano" name="tamano" [(ngModel)]="contacto.tamano" required #tamano="ngModel">        <option value="" disabled selected>Elige una opción</option>        <option value="pequeno">Pequeño</option>        <option value="mediano">Mediano</option>        <option value="grande">Grande</option>      </select>      <div class="error" *ngIf="tamano.invalid && tamano.touched">        <span>⚠️ Debes elegir un tamaño.</span>      </div>    </div>    <!-- Campo de Mensaje -->    <div>      <label for="mensaje">Cuéntanos tu idea:</label>      <textarea id="mensaje" name="mensaje" [(ngModel)]="contacto.mensaje" required minlength="12" #mensaje="ngModel"></textarea>      <div class="error" *ngIf="mensaje.invalid && mensaje.touched">        <span *ngIf="mensaje.errors?.[\'required\']">⚠️ El mensaje es obligatorio.</span>        <span *ngIf="mensaje.errors?.[\'minlength\']">⚠️ Mínimo 12 caracteres requeridos.</span>      </div>    </div>    <!-- Botón de envío -->    <button type="submit" [disabled]="contactoForm.invalid">Solicita tu tarta</button>  </form></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BannerCustomCakeComponent', 'selector': 'app-banner-custom-cake'},{'name': 'ContactoComponent', 'selector': 'app-contacto'},{'name': 'CustomCakesComponent', 'selector': 'app-custom-cakes'},{'name': 'FacturaComponent', 'selector': 'app-factura'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NosotrosComponent', 'selector': 'app-nosotrosS'},{'name': 'NosotrosComponentc', 'selector': 'app-nosotros'},{'name': 'NuestrasTartasComponent', 'selector': 'app-nuestras-tartas'},{'name': 'PhotoSliderComponent', 'selector': 'app-photo-slider'},{'name': 'RecetasComponent', 'selector': 'app-recetas'},{'name': 'RecetasComponent', 'selector': 'app-recetas'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ContactoComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ContactoComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

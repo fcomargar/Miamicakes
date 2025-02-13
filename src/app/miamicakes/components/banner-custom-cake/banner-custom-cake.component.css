@@ -1,0 +1,63 @@
+.cake-container {
+    font-family: "Cursive", "Great Vibes"; /* Tipografía */
+    text-align: center;
+    background-color: #9F7E7E; /* Color de fondo */    
+    border-bottom: 6px solid #F2C4C4; /* Línea inferior */
+    
+  }
+  
+  .cake-header {
+    position: relative;
+    
+  }
+  
+  .cake-image {
+    position: relative; /* Necesario para que el ::before se posicione correctamente */
+    /* margin-bottom: 20px; */
+    background-image: url('../../../../assets/seccion-tartas-1024x683.jpg');  
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 70vh; 
+    width: 100%;
+    padding: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Capa de opacidad oscura */
+.cake-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Ajusta el nivel de oscuridad */
+    z-index: 0;
+}
+
+/* Asegura que el contenido quede sobre la capa de opacidad */
+.cake-image * {
+    position: relative;
+    z-index: 2;
+}
+
+.cake-title {
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;    
+    border-bottom: 1px solid #fff;
+    border-top: 1px solid #fff;
+    padding: 10px;
+  }

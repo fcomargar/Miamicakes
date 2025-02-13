@@ -1,29 +1,21 @@
-<div class="slider-container">
-  <button (click)="prevImage()"><</button>
-  <div class="slide-wrapper">
-    <img 
-      [src]="images[currentIndex]" 
-      alt="Slider Image" 
-      class="slider-image"
-      [@slideAnimation]="direction"
-    >
+<!-- Contenedor de la galería -->
+<div class="gallery-container">
+  <!-- Recorre las imágenes y las muestra en formato de polaroid -->
+  <div *ngFor="let image of images" class="polaroid" (click)="openImage(image)">
+    <img [src]="image" alt="Gallery Image" class="polaroid-image">
   </div>
-  <button (click)="nextImage()">></button>
 </div>
 
-<!-- Contenedor de miniaturas -->
-<div class="thumbnails-container">
-  <div 
-    *ngFor="let image of images; let i = index" 
-    class="thumbnail-wrapper"
-    (click)="selectImage(i)"
-  >
-    <img 
-      [src]="image" 
-      alt="Thumbnail" 
-      class="thumbnail"
-      [class.active]="i === currentIndex"
-      [style.opacity]="i === currentIndex ? '1' : '0.7'" ><!-- Fuerza actualización -->
-    
+<!-- Modal para mostrar la imagen ampliada -->
+<div class="modal" *ngIf="selectedImage" (click)="closeImage()">
+  <div class="modal-content">
+    <img [src]="selectedImage" alt="Full Image" class="full-image">
   </div>
+</div>
+
+<!-- Botón para solicitar una tarta -->
+<div class="container-button">
+  <button class="cake-button">
+    <h2>Solicita tu tarta</h2>
+  </button>
 </div>

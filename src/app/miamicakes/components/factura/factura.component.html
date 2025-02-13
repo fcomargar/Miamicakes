@@ -1,0 +1,37 @@
+<!-- Contenedor principal de la factura -->
+<div class="factura-container">
+    <h2>Resumen de tu pedido</h2>
+    
+    <!-- Verifica si existen datos de contacto antes de mostrarlos -->
+    <div *ngIf="datosContacto" class="datos-pedido">
+      <h3>Gracias {{ datosContacto.nombre }}!</h3>
+      <p>Hemos recibido tu solicitud para una tarta personalizada:</p>
+      
+      <!-- Tabla con los detalles del pedido -->
+      <table>
+        <tr>
+          <th>Email:</th>
+          <td>{{ datosContacto.email }}</td>
+        </tr>
+        <tr>
+          <th>Sabor:</th>
+          <td>{{ datosContacto.sabor | titlecase }}</td>
+        </tr>
+        <tr>
+          <th>Tamaño:</th>
+          <td>{{ datosContacto.tamano | titlecase }}</td>
+        </tr>
+        <tr>
+          <th>Mensaje:</th>
+          <td class="mensaje">{{ datosContacto.mensaje }}</td>
+        </tr>
+      </table>
+  
+      <!-- Mensaje de confirmación -->
+      <p class="confirmacion">Tu pedido está siendo procesado. Nos pondremos en contacto contigo en las próximas 24 horas.</p>
+    </div>
+  
+    <!-- Botón para regresar al formulario -->
+    <button (click)="router.navigate(['/contacto'])">Volver al formulario</button>
+  </div>
+  
