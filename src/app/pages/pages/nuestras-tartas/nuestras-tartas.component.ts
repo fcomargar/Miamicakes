@@ -4,6 +4,8 @@ import { BannerCustomCakeComponent } from "../../../miamicakes/components/banner
 import { MiamicakesModule } from "../../../miamicakes/miamicakes.module";
 import { FooterComponent } from "../../../miamicakes/components/footer/footer.component";
 
+
+
 @Component({
   selector: 'app-nuestras-tartas',
   standalone: true,

@@ -1,3 +1,4 @@
+<div class="contenedor">
 <!-- Contenedor principal de la factura -->
 <div class="factura-container">
     <h2>Resumen de tu pedido</h2>
@@ -30,8 +31,10 @@
       <!-- Mensaje de confirmación -->
       <p class="confirmacion">Tu pedido está siendo procesado. Nos pondremos en contacto contigo en las próximas 24 horas.</p>
     </div>
-  
+    <button (click)="enviarCorreo()" class="boton">Enviar por correo</button>
     <!-- Botón para regresar al formulario -->
-    <button (click)="router.navigate(['/contacto'])">Volver al formulario</button>
+    <!-- <button (click)="router.navigate(['/contacto'])" class="boton">Volver al formulario</button> -->
   </div>
+</div>
+
   

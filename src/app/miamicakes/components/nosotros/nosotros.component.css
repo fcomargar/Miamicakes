@@ -14,6 +14,12 @@
     text-shadow: 1px 1px 3px black;
     
   }
+.cake-title{
+  margin-top: 80px;
+  font-size: 38px;
+  margin-bottom: 10px;
+}
+
 .about-container {
     max-width:900px;
     margin: auto;
@@ -29,6 +35,8 @@
     font-weight: bold;
     margin-bottom: 20px;
     color: #8b6c5c;
+
+   
   }
   
   .profile {
@@ -145,4 +153,13 @@
     
     
   }
+
+   /* Responsive */
+ @media (max-width: 500px) {
+    
+
+  .cake-title  {
+     margin-top: 200px;
+  }
+}
   

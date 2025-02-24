@@ -116,7 +116,7 @@ body {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 500px) {
   .nav-links {
     flex-direction: column; /* Apila los enlaces en una columna */
     align-items: center;

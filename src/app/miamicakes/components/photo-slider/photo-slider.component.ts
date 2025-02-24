@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 
 /**
  * @component
  * @description Componente para mostrar una galería de imágenes con un efecto de polaroid. 
  * Permite seleccionar una imagen para verla en un modal ampliado.
  */
-@Component({
+@Component({  
   selector: 'app-photo-slider',
   templateUrl: './photo-slider.component.html',
   styleUrls: ['./photo-slider.component.css']
@@ -41,6 +42,8 @@ export class PhotoSliderComponent {
    */
   selectedImage: string | null = null;
 
+  constructor(private router: Router) {} // Inyecta Router en el constructor
+
   /**
    * @method openImage
    * @description Abre el modal con la imagen seleccionada.
@@ -57,4 +60,13 @@ export class PhotoSliderComponent {
   closeImage(): void {
     this.selectedImage = null;
   }
+
+   /**
+   * Método para navegar a otra ruta.
+   * @param path Ruta a la que se desea navegar.
+   */
+   navigateTo(path: string): void {
+    this.router.navigate([path]); // Navega a la ruta especificada
+  }
+
 }

@@ -1,0 +1,33 @@
+<div class="video-search-container">
+    <!-- Barra de búsqueda -->
+    <div class="search-bar">
+      <input 
+        type="text" 
+        placeholder="Buscar..." 
+        [(ngModel)]="keyword" 
+        (keyup.enter)="search()" 
+        class="search-input" />
+      <button (click)="search()" class="search-button">Buscar</button>
+    </div>
+  
+    <!-- Resultados -->
+    <div *ngIf="videos?.meals; else noResults" class="results-container">
+      <div *ngFor="let meal of videos.meals" class="result-card">
+        <h3 class="result-title">{{ meal.strMeal }}</h3>
+        <div *ngIf="meal.strYoutube">
+          <iframe 
+            class="result-video"
+            [src]="meal.strYoutube | safeUrl" 
+            frameborder="0" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Mensaje si no hay resultados -->
+    <ng-template #noResults>
+      <p>No se encontraron videos para "{{ keyword }}".</p>
+    </ng-template>
+  </div>
+  

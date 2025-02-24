@@ -1,0 +1,173 @@
+/* Importación de fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+.contenedor{
+    padding-top: 100px;
+    padding-bottom: 100px;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../../../../assets/fondoFactura.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    border-bottom: 6px solid #F2C4C4;
+}
+
+/* Estilos generales */
+.factura-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #9F7E7E;
+    border-radius: 10px;
+    color: white;
+    font-family: 'Work Sans', sans-serif;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    height: fit-content;
+}
+
+.factura-container h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 36px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.datos-pedido {
+    background-color: #C69797;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: left;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.datos-pedido h3 {
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.datos-pedido p {
+    font-size: 16px;
+}
+
+table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+table th {
+    text-align: left;
+    color: #FFF;
+    font-weight: bold;
+    padding: 8px;
+}
+
+table td {
+    color: white;
+    padding: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.boton{
+    margin: 10px;
+}
+
+.mensaje {
+    font-style: italic;
+    color: #FFE6E6;
+}
+
+.confirmacion {
+    font-weight: bold;
+    margin-top: 15px;
+    color: #fff;
+    text-align: center;
+}
+
+button {
+    margin-top: 20px;
+    background-color: #ffb6b6;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-shadow: 0px 1px 3px black;
+}
+
+button:hover {
+    background-color: #ff9090;
+}
+
+.mensaje {
+    font-style: italic;
+    color: #FFE6E6;
+    word-wrap: break-word; /* Permite dividir palabras largas */
+    overflow-wrap: break-word; /* Asegura que el texto se divida correctamente */
+    white-space: normal; /* Permite que el texto haga saltos de línea */
+    max-width: 100%; /* Para que el mensaje no exceda el contenedor */
+    display: block; /* Para que respete el ancho del contenedor */
+}
+
+
+/* Asegura que la factura se ajuste al contenido */
+.factura-container {
+    max-width: 600px;
+    width: 100%; /* Asegura que se ajuste al contenedor */
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #9F7E7E;
+    border-radius: 10px;
+    color: white;
+    font-family: 'Work Sans', sans-serif;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    height: auto;  /* Cambia el height fijo a auto para ajustarse al contenido */
+    max-height: 550px; /* Puedes limitar la altura si es necesario */
+}
+
+table {
+    table-layout: fixed; /* Fija el ancho de la tabla */
+    width: 100%; /* Asegura que la tabla use todo el ancho disponible */
+}
+
+table td {
+    word-wrap: break-word; /* Evita que el contenido se salga */
+    overflow-wrap: break-word; /* Alternativa para navegadores modernos */
+    white-space: normal; /* Asegura saltos de línea */
+}
+
+
+/* Responsive */
+@media (max-width: 480px) {
+
+    .contenedor{
+        padding-top: 167px;
+        height: 120vh;
+    }
+    .factura-container {
+        width: 90%;
+        height: fit-content;
+        
+    }
+
+    .mensaje{
+        width: 90%; 
+    }
+    
+    table th, table td {
+        font-size: 14px;
+        padding: 6px;
+        width: 90%; 
+    }
+}
