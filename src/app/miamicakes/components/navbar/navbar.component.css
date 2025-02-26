@@ -29,6 +29,20 @@ body {
   
   
 }
+.logo{
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  text-decoration: none;
+  font-family: "Cursive", "Great Vibes"; /* Tipografía */
+  font-size: 24px;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  list-style: none;
+  text-shadow: 0px 1px 3px black;
+}
 
 .logo-img {
   width: 50px;

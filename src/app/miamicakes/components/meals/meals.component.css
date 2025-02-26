@@ -4,6 +4,7 @@
     padding: 40px;
     border-top: 6px solid #F2C4C4;
     border-bottom: 6px solid #F2C4C4;
+    min-height: 80vh;
   }
   
   /* Estilos de la barra de búsqueda */

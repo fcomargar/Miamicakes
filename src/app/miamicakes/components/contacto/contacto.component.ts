@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ContactoService } from '../../../service/contacto.service';
+import emailjs from '@emailjs/browser';
 
 /**
  * @component
@@ -55,5 +56,21 @@ export class ContactoComponent {
     } else {
       alert('Por favor, completa todos los campos correctamente.');
     }
+  }
+
+  enviarCorreo() {
+    const templateParams = {
+      nombre: this.contacto.nombre,
+      email: this.contacto.email,
+      sabor: this.contacto.sabor,
+      tamano: this.contacto.tamano,
+      mensaje: this.contacto.mensaje
+    };
+
+    emailjs.send('service_spnyu67', 'template_g8hlpa9', templateParams, 'tYt8n0aD7MaXFXaXQ')
+      .then(
+        response => alert('Correo enviado correctamente'),
+        error => alert('Error al enviar el correo')
+      );
   }
 }
