@@ -1,0 +1,481 @@
+<!-- ================================ -->
+<!--   MENÚ HORIZONTAL DE NAVEGACIÓN  -->
+<!-- ================================ -->
+<nav class="dashboard-nav">
+  <ul>
+    <!-- Solo para administradores: enlace al panel admin -->
+    <li
+      *ngIf="usuario?.rol === 'ADMINISTRADOR'"
+      (click)="router.navigate(['/dashboard-admin'])"
+      class="admin-link"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-admin" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M12 2a9.99 9.99 0 0 0-8 4h16a9.99 9.99 0 0 0-8-4zm0 20a9.99 9.99 0 0 0 8-4H4a9.99 9.99 0 0 0 8 4z"/>
+      </svg>
+      Admin
+    </li>
+
+    <!-- Solo para usuarios normales: Dashboard -->
+    <li
+      *ngIf="usuario?.rol !== 'ADMINISTRADOR'"
+      (click)="seleccionarSeccion('dashboard')"
+      [class.active]="seccionSeleccionada === 'dashboard'"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-dashboard" viewBox="0 0 24 24">
+        <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8v-10h-8v10zm0-18v6h8V3h-8z" fill="currentColor"/>
+      </svg>
+      Dashboard
+    </li>
+
+    <!-- Solo para usuarios normales: Información -->
+    <li
+      *ngIf="usuario?.rol !== 'ADMINISTRADOR'"
+      (click)="seleccionarSeccion('info')"
+      [class.active]="seccionSeleccionada === 'info'"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-info" viewBox="0 0 24 24">
+        <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.75 15h-1.5v-6h1.5v6zm0-8h-1.5V7h1.5v2z" fill="currentColor"/>
+      </svg>
+      Información del Usuario
+    </li>
+
+    <!-- Solo para usuarios normales: Seguridad -->
+    <li
+      *ngIf="usuario?.rol !== 'ADMINISTRADOR'"
+      (click)="seleccionarSeccion('security')"
+      [class.active]="seccionSeleccionada === 'security'"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-security" viewBox="0 0 24 24">
+        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 18a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm1-7h-2V7h2v5z" fill="currentColor"/>
+      </svg>
+      Seguridad
+    </li>
+
+    <!-- Solo para usuarios normales: Borrar Cuenta -->
+    <li
+      *ngIf="usuario?.rol !== 'ADMINISTRADOR'"
+      (click)="seleccionarSeccion('delete')"
+      [class.active]="seccionSeleccionada === 'delete'"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-delete" viewBox="0 0 24 24">
+        <path d="M16 9v10H8V9h8m-1.5-6H9.5l-1 1H5v2h14V4h-3.5l-1-1z" fill="currentColor"/>
+      </svg>
+      Borrar Cuenta
+    </li>
+  </ul>
+</nav>
+
+
+<!-- ================================ -->
+<!--        CONTENIDO PRINCIPAL       -->
+<!-- ================================ -->
+<div class="content">
+  <!-- ------------------------------ -->
+  <!--   Sección: DASHBOARD principal   -->
+  <!-- ------------------------------ -->
+  <div *ngIf="seccionSeleccionada === 'dashboard'">
+    <div class="dashboard-container fade-slide">
+      <!-- Cabecera centrada -->
+      <div class="dashboard-header">
+        <h2>Bienvenido, {{ usuario?.nombre }} 🎉</h2>
+      </div>
+
+      <!-- Solicitudes de Presupuesto -->
+      <section class="section-dashboard">
+        <h3>Presupuestos</h3>
+        <button
+          class="btn btn-primary btn-nueva-solicitud"
+          (click)="nuevaSolicitud()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-plus"
+            viewBox="0 0 24 24"
+            width="20"
+            height="20"
+          >
+            <circle cx="12" cy="12" r="10" fill="currentColor" />
+            <line
+              x1="12"
+              y1="8"
+              x2="12"
+              y2="16"
+              stroke="#ff6b85"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+            <line
+              x1="8"
+              y1="12"
+              x2="16"
+              y2="12"
+              stroke="#ff6b85"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+          Nueva Solicitud
+        </button>
+
+        <div *ngIf="solicitudes.length > 0; else noSolicitudes">
+          <ul class="card-list">
+            <li *ngFor="let s of solicitudes" class="card-item">
+              <p><strong>Tamaño:</strong> {{ s.tamano }}</p>
+              <p><strong>Sabor:</strong> {{ s.sabor }}</p>
+              <p><strong>Tema:</strong> {{ s.tema }}</p>
+              <p><strong>Mensaje:</strong> {{ s.mensaje }}</p>
+              <p><strong>Estado:</strong> {{ s.estado }}</p>
+              <p>
+                <strong>Creación:</strong>
+                {{ s.fechaCreacion | date:'short' }}
+              </p>
+
+              <!-- Presupuestos asociados -->
+              <div
+                *ngIf="
+                  presupuestosMap[s.id] &&
+                  presupuestosMap[s.id].length > 0;
+                  else noPresupuestos
+                "
+              >
+                <h4>Presupuesto:</h4>
+                <ul class="inner-card-list">
+                  <li *ngFor="let p of presupuestosMap[s.id]" class="inner-card-item">
+                    <!-- Mostrar precio como “33.00€” -->
+                    <p>
+                      <strong>Precio:</strong>
+                      {{ p.precio.toFixed(2) }}€
+                    </p>
+
+                    <!-- Sólo mostramos “Enviado:” si fechaEnvio NO es nula -->
+                    <p *ngIf="p.fechaEnvio">
+                      <strong>Enviado:</strong>
+                      {{ p.fechaEnvio | date:'short' }}
+                    </p>
+
+                    <p><strong>Estado:</strong> {{ p.estado }}</p>
+                    <button
+                      *ngIf="p.estado === 'PENDIENTE_DE_PAGO'"
+                      class="btn btn-primary btn-pagar"
+                      (click)="abrirModalPago(p, s.id)"
+                    >
+                      Pagar ahora
+                    </button>
+                    <button
+                      *ngIf="p.estado === 'PENDIENTE_DE_PAGO'"
+                      class="btn btn-primary btn-pagar"
+                      (click)="rechazarPresupuesto(p, s.id)"
+                      (click)="rechazarSolicitud(s.id)"
+                    >
+                      Rechazar
+                    </button>
+                    <!-- Botón para generar PDF -->
+                    <button
+                      class="btn btn-secondary btn-descargar"
+                      *ngIf="p.estado === 'PAGADO' || p.estado === 'ENVIADO'"
+                      (click)="descargarFactura(s, p)"
+                    >
+                      Descargar factura
+                    </button>
+
+                  </li>
+                </ul>
+              </div>
+              <ng-template #noPresupuestos>
+                <p class="sin-datos">No hay presupuestos para esta solicitud.</p>
+              </ng-template>
+            </li>
+          </ul>
+        </div>
+        <ng-template #noSolicitudes>
+          <p class="sin-datos">No tienes solicitudes registradas.</p>
+        </ng-template>
+      </section>
+
+      <!-- Botón Cerrar Sesión -->
+      <div class="footer-actions">
+        <button
+          (click)="cerrarSesion()"
+          class="btn btn-danger btn-cerrar-sesion"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-logout"
+            viewBox="0 0 24 24"
+            width="20"
+            height="20"
+          >
+            <path
+              d="M16 17l5-5-5-5M21 12H9"
+              stroke="#fff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13 5H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7"
+              stroke="#fff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          Cerrar sesión
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ------------------------------ -->
+  <!--  Sección: INFORMACIÓN USUARIO  -->
+  <!-- ------------------------------ -->
+  <div *ngIf="seccionSeleccionada === 'info'" class="info-section fade-slide">
+    <h2>Información del Usuario</h2>
+    <form (ngSubmit)="actualizarInfoUsuario()" #infoForm="ngForm">
+      <!-- Nombre -->
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input
+          id="nombre"
+          name="nombre"
+          type="text"
+          class="form-control"
+          [(ngModel)]="infoNombre"
+          required
+        />
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Correo Electrónico:</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          class="form-control"
+          [(ngModel)]="infoEmail"
+          required
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary btn-actualizar-info"
+        [disabled]="infoForm.invalid"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-save"
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+        >
+          <path
+            d="M17 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7l-4-4zM5 21V5h11v4h4v12H5z"
+            fill="currentColor"
+          />
+          <path
+            d="M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 2c-4 0-6 2-6 4v2h12v-2c0-2-2-4-6-4z"
+            fill="currentColor"
+          />
+        </svg>
+        Guardar Cambios
+      </button>
+    </form>
+  </div>
+
+  <!-- ------------------------------ -->
+  <!--   Sección: CAMBIAR CONTRASEÑA   -->
+  <!-- ------------------------------ -->
+  <div *ngIf="seccionSeleccionada === 'security'" class="security-section fade-slide">
+    <h2>Seguridad / Cambiar Contraseña</h2>
+    <form (ngSubmit)="cambiarContrasena()" #passForm="ngForm">
+     
+
+      <!-- Nueva contraseña -->
+      <div class="form-group">
+        <label for="nuevaContrasena">Nueva Contraseña:</label>
+        <input
+          id="nuevaContrasena"
+          name="nuevaContrasena"
+          type="password"
+          class="form-control"
+          [(ngModel)]="nuevaContrasena"
+          minlength="6"
+          required
+        />
+      </div>
+
+      <!-- Confirmar nueva contraseña -->
+      <div class="form-group">
+        <label for="confirmarContrasena">Confirmar Nueva Contraseña:</label>
+        <input
+          id="confirmarContrasena"
+          name="confirmarContrasena"
+          type="password"
+          class="form-control"
+          [(ngModel)]="confirmarContrasena"
+          minlength="6"
+          required
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary btn-actualizar-pass"
+        [disabled]="passForm.invalid"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-lock"
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+        >
+          <path
+            d="M12 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm6-9h-1V7a5 5 0 0 0-10 0v1H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2zm-8-1a3 3 0 0 1 6 0v1H10V7z"
+            fill="currentColor"
+          />
+        </svg>
+        Cambiar Contraseña
+      </button>
+    </form>
+  </div>
+
+  <!-- ------------------------------ -->
+  <!--     Sección: BORRAR CUENTA      -->
+  <!-- ------------------------------ -->
+  <div *ngIf="seccionSeleccionada === 'delete'" class="delete-section fade-slide">
+    <h2>Borrar Cuenta</h2>
+    <p class="warning-text">
+      Esta acción eliminará permanentemente tu cuenta y todos tus datos.  
+      <strong>¡No se puede deshacer!</strong>
+    </p>
+    <button
+      class="btn btn-danger btn-borrar-cuenta"
+      (click)="borrarCuenta()"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-trash"
+        viewBox="0 0 24 24"
+        width="20"
+        height="20"
+      >
+        <path
+          d="M16 9v10H8V9h8m-1.5-6H9.5l-1 1H5v2h14V4h-3.5l-1-1z"
+          fill="currentColor"
+        />
+      </svg>
+      Sí, quiero borrar mi cuenta
+    </button>
+  </div>
+</div>
+
+<!-- ================================ -->
+<!--        POPUP “PAGO CON TARJETA”  -->
+<!-- ================================ -->
+<div class="modal-overlay" *ngIf="mostrarModalPago">
+  <div class="modal-content fade-slide">
+    <!-- 1) Formulario de tarjeta mientras no esté cargando ni haya éxito -->
+    <div *ngIf="!cargandoPago && !pagoExitoso">
+      <h3>Pago con Tarjeta</h3>
+      <form (ngSubmit)="enviarFormularioPago()" #cardForm="ngForm">
+        <div class="form-group">
+          <label for="numeroTarjeta">Número de Tarjeta:</label>
+          <input
+            id="numeroTarjeta"
+            name="numeroTarjeta"
+            type="text"
+            class="form-control"
+            [(ngModel)]="numeroTarjeta"
+            maxlength="19"
+            placeholder="Ej: 4111 1111 1111 1111"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="nombreTitular">Nombre del Titular:</label>
+          <input
+            id="nombreTitular"
+            name="nombreTitular"
+            type="text"
+            class="form-control"
+            [(ngModel)]="nombreTitular"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="expiracionTarjeta">Caducidad (MM/AA):</label>
+          <input
+            id="expiracionTarjeta"
+            name="expiracionTarjeta"
+            type="text"
+            class="form-control"
+            [(ngModel)]="expiracionTarjeta"
+            placeholder="MM/AA"
+            maxlength="5"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="ccvTarjeta">CCV:</label>
+          <input
+            id="ccvTarjeta"
+            name="ccvTarjeta"
+            type="text"
+            class="form-control"
+            [(ngModel)]="ccvTarjeta"
+            maxlength="3"
+            placeholder="123"
+            required
+          />
+        </div>
+        <div class="contenedor-botones">
+          <!-- Ahora el texto del botón dice “Pagar 33.00€” -->
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="cardForm.invalid"
+          >
+            Pagar {{ modalPresupuesto.precio.toFixed(2) }}€
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="cerrarModalPago()"
+          >
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- 2) Spinner de carga (3s) -->
+    <div *ngIf="cargandoPago" class="payment-loading">
+      <div class="spinner"></div>
+      <p>Procesando pago...</p>
+    </div>
+
+    <!-- 3) Símbolo de éxito (2s) -->
+    <div *ngIf="pagoExitoso" class="payment-success">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-check"
+        viewBox="0 0 24 24"
+        width="48"
+        height="48"
+      >
+        <path
+          d="M20 6L9 17l-5-5"
+          stroke="#28a745"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          fill="none"
+        />
+      </svg>
+      <p>¡Pago exitoso!</p>
+    </div>
+  </div>
+</div>

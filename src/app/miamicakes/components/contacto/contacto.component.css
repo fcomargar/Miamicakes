@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 .title-div{    
-    margin-top: 76px;
+    margin-top: 95px;
     background-color: #9F7E7E;
     color: white;
     text-align: center;
@@ -71,6 +71,7 @@
 .button-container {
     text-align: center;
     margin-top: 15px;
+    font-size: 26px;
 }
 
 button {
@@ -83,16 +84,37 @@ button {
     cursor: pointer;
     transition: 0.3s;
     color: white;
+    width: fit-content;
+    font-size: 26px;
+
+}
+
+.vista-piso {
+  display: block;
+  max-width: 40%;
+  /* height: auto; */
+  margin: 1rem auto; /* centrado horizontal */
+ 
 }
 
 button:hover {
     background-color: #ffb6b6;
 }
 
+.bonton-aling{
+    align-items: center;
+}
+
 .error {
-    color: red;
-    font-size: 14px;
+    background-color: #fff;
+    color: red;    
     margin-top: 4px;
+    border-radius: 5px;
+    padding: 4px;    
+  }
+
+  span{
+    font-size: 18px;
   }
   input.ng-invalid.ng-touched,
   textarea.ng-invalid.ng-touched,
@@ -102,6 +124,7 @@ button:hover {
   button:disabled {
     background-color: gray;
     cursor: not-allowed;
+    font-size: 26px;
   }
 
   /* Importar fuente */
@@ -140,7 +163,7 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-shadow: 1px 1px 3px black;
+    /* text-shadow: 1px 1px 3px black; */
 }
 
 form div {
@@ -173,7 +196,7 @@ button {
     background-color: #F2C4C4;
     border: none;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 28px;
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
@@ -197,9 +220,7 @@ button:hover {
         width: 90%;
     }
 
-    .title-div{
-        margin-top: 60px;
-    }
+   
 }
 
   
@@ -211,11 +232,4 @@ button:hover {
     }
 }
 
- /* Responsive */
- @media (max-width: 500px) {
-    
 
-    .title-div {
-       margin-top: 190px;
-    }
-  }

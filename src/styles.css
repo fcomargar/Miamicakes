@@ -1,4 +1,31 @@
+
+
+
 /* You can add global styles to this file, and also import other style files */
+
+
+
+
+
+:root {
+  /* Paleta MiamiCakes */
+  --brand-pink: #ff8fa3;
+  --brand-pink-dark: #ff6b85;
+  --brand-bg: #fff5f7;
+  --brand-border: #ffd6e0;
+
+  /* Neutros */
+  --white: #ffffff;
+  --black: #1b1b1b;
+  --gray-muted: #6b6b6b;
+
+  /* Layout helpers */
+  --radius: 1rem;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.08);
+  --transition: all 0.25s ease-in-out;
+}
+
 body{
     margin: 0px;
     padding: 0px;

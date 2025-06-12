@@ -1,19 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ContactoComponent } from './contacto.component';
-import { FormsModule } from '@angular/forms'; 
+import { DashboardUserComponent } from './dashboard-user.component';
 
-describe('ContantoComponent', () => {
-  let component: ContactoComponent;
-  let fixture: ComponentFixture<ContactoComponent>;
+describe('DashboardUserComponent', () => {
+  let component: DashboardUserComponent;
+  let fixture: ComponentFixture<DashboardUserComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ContactoComponent]
+      imports: [DashboardUserComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ContactoComponent);
+    fixture = TestBed.createComponent(DashboardUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

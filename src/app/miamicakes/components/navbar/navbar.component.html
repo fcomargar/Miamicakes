@@ -1,17 +1,75 @@
 <nav class="navbar">
-  <div class="logo animate__animated animate__rubberBand logo">
-    <a routerLink="/"><img src="../../../../assets/LOGO_FINAL_VECTORIZADO.svg" alt="Logo" class="logo-img" /></a><h2 class="nav-links">MiamiCakes</h2>
-  </div>
-  <ul class="nav-links">
-    <li><a routerLink="/nuestras-tartas" routerLinkActive="active"><h2>Nuestras tartas</h2></a></li>
-    <li><a routerLink="/nosotros" routerLinkActive="active"><h2>Nosotros</h2></a></li>
-    <li><a routerLink="/contacto" routerLinkActive="active"><h2>Contáctanos</h2></a></li>
-    <li><a routerLink="/recetas" routerLinkActive="active"><h2>Recetas</h2></a></li>
-  </ul>
-  <div class="contact-icon">
-    <a routerLink="/contacto">
-      <img src="../../../../assets/icon-mail.svg" alt="Contacto" class="" />
-      <i class="fas fa-envelope"></i>
+  <div class="logo animate__animated animate__rubberBand">
+    <a routerLink="/">
+      <img src="../../../../assets/LOGO_FINAL_VECTORIZADO.svg" alt="Logo" class="logo-img" />
+      <h2 class="name">MiamiCakes</h2>
     </a>
+    <!-- botón hamburguesa -->
+    <button class="menu-toggle" (click)="toggleMenu()">
+      {{ isMenuOpen ? '✕' : '☰' }}
+    </button>
   </div>
+
+  <!-- Ocultamos siempre estos links en la barra -->
+  <!-- <ul class="nav-links">…</ul> -->
+
+  <!-- Panel lateral móvil -->
+  <ul class="mobile-menu" [class.active]="isMenuOpen">
+  <li>
+    <a
+      routerLink="/nuestras-tartas"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="toggleMenu()"
+    >
+      Nuestras tartas
+    </a>
+  </li>
+  <li>
+    <a
+      routerLink="/nosotros"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="toggleMenu()"
+    >
+      Nosotros
+    </a>
+  </li>
+  <li>
+    <a
+      routerLink="/contacto"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="toggleMenu()"
+    >
+      Solicita tu tarta
+    </a>
+  </li>
+  <li>
+    <a
+      routerLink="/recetas"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="toggleMenu()"
+    >
+      Recetas
+    </a>
+  </li>
+</ul>
+
+
+  <div class="contact-icon">
+  <ng-container *ngIf="usuario; else sinLogin">
+    <a routerLink="/dashboard" class="contact-icon">
+      <img src="../../../../assets/userIcon.png" alt="userIcon" />
+      <p class="text-user">{{ usuario.nombre }}</p>
+    </a>
+  </ng-container>
+  <ng-template #sinLogin>
+    <a routerLink="/login" class="contact-icon">
+      <img src="../../../../assets/userIcon.png" alt="userIcon" />
+      <p class="text-user">Mi cuenta</p>
+    </a>
+  </ng-template>
+</div>
 </nav>

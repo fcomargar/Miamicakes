@@ -1,0 +1,125 @@
+<!-- registro.component.html -->
+<div class="registro-page">
+  <!-- Cabecera -->
+  <header class="registro-header">
+    <img src="../../../../assets/LOGO_FINAL_VECTORIZADO.svg" alt="Miami Cakes" class="logo" />
+    <h1>MiamiCakes</h1>
+  </header>
+
+  <div class="registro-content">
+    <!-- Beneficios -->
+    <div class="registro-beneficios">
+      <div class="beneficio">
+        <span class="icono">🚚</span>
+        <div>
+          <h3>Gestiona tus pedidos</h3>
+          <p>Ten el control de todos tus pedidos y recibe notificaciones con el seguimiento</p>
+        </div>
+      </div>
+      <div class="beneficio">
+        <span class="icono">📩</span>
+        <div>
+          <h3>Solicita tus tartas personalizadas</h3>
+          <p>Contactanos para solicitar tu tarta personalizada a tu gusto</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulario -->
+    <div class="registro-formulario">
+      <h2>Crear cuenta</h2>
+      <form [formGroup]="formularioRegistro" (ngSubmit)="registrarUsuario()">
+
+        <!-- Nombre -->
+        <div class="form-group">
+          <input
+            id="nombre"
+            formControlName="nombre"
+            type="text"
+            placeholder=" "
+            required
+          />
+          <label for="nombre">Nombre*</label>
+        </div>
+        <div class="error"
+             *ngIf="formularioRegistro.get('nombre')?.hasError('required') && formularioRegistro.get('nombre')?.touched">
+          El nombre es obligatorio.
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <input
+            id="email"
+            formControlName="email"
+            type="email"
+            placeholder=" "
+            required
+          />
+          <label for="email">E-mail*</label>
+        </div>
+        <div class="error"
+             *ngIf="formularioRegistro.get('email')?.hasError('required') && formularioRegistro.get('email')?.touched">
+          El correo es obligatorio.
+        </div>
+        <div class="error"
+             *ngIf="formularioRegistro.get('email')?.hasError('email') && formularioRegistro.get('email')?.touched">
+          Ingresa un correo válido.
+        </div>
+        <div class="error"
+             *ngIf="formularioRegistro.get('email')?.hasError('duplicado') && formularioRegistro.get('email')?.touched">
+          Este correo ya está en uso.
+        </div>
+
+        <!-- Contraseña -->
+        <div class="form-group">
+          <input
+            id="contrasena"
+            formControlName="contrasena"
+            type="password"
+            placeholder=" "
+            required
+          />
+          <label for="contrasena">Contraseña*</label>
+        </div>
+        <div class="error"
+             *ngIf="formularioRegistro.get('contrasena')?.hasError('required') && formularioRegistro.get('contrasena')?.touched">
+          La contraseña es obligatoria.
+        </div>
+        <div class="error"
+             *ngIf="formularioRegistro.get('contrasena')?.hasError('minlength') && formularioRegistro.get('contrasena')?.touched">
+          La contraseña debe tener al menos 6 caracteres.
+        </div>
+
+        <!-- Repetir contraseña -->
+        <div class="form-group">
+          <input
+            id="repetirContrasena"
+            formControlName="repetirContrasena"
+            type="password"
+            placeholder=" "
+            required
+          />
+          <label for="repetirContrasena">Repetir contraseña*</label>
+        </div>
+        <div class="error"
+             *ngIf="formularioRegistro.hasError('contrasenasNoCoinciden') && formularioRegistro.get('repetirContrasena')?.touched">
+          Las contraseñas no coinciden.
+        </div>
+
+        <!-- Botón principal -->
+        <button type="submit" [disabled]="cargando">
+          {{ cargando ? 'Registrando...' : 'Crear cuenta' }}
+        </button>
+      </form>
+
+      <p class="mensaje" *ngIf="mensaje">{{ mensaje }}</p>
+
+      <!-- Nueva sección de botones abajo -->
+      <div class="extra-actions">
+        
+        <div class="separator"><span><strong>Tengo una cuenta</strong></span></div>
+        <button class="btn-login" (click)="irALogin()">Iniciar sesión</button>
+      </div>
+    </div>
+  </div>
+</div>

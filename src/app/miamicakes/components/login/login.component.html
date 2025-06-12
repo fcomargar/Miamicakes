@@ -1,0 +1,84 @@
+<!-- login.component.html -->
+<div class="registro-page">
+  <!-- Cabecera -->
+  <header class="registro-header">
+    <img src="../../../../assets/LOGO_FINAL_VECTORIZADO.svg" alt="Miami Cakes" class="logo" />
+    <h1>MiamiCakes</h1>
+  </header>
+
+  <div class="registro-content">
+    <!-- Beneficios -->
+    <div class="registro-beneficios">
+      <div class="beneficio">
+        <span class="icono">🚚</span>
+        <div>
+          <h3>Gestiona tus pedidos</h3>
+          <p>Ten el control de todos tus pedidos y recibe notificaciones con el seguimiento</p>
+        </div>
+      </div>
+      <div class="beneficio">
+        <span class="icono">📩</span>
+        <div>
+          <h3>Solicita tus tartas personalizadas</h3>
+          <p>Contactanos para solicitar tu tarta personalizada a tu gusto</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulario -->
+    <div class="registro-formulario">
+      <h2>Iniciar sesión</h2>
+      <form [formGroup]="formularioLogin" (ngSubmit)="iniciarSesion()">
+
+        <!-- Email -->
+        <div class="form-group">
+          <input
+            id="email"
+            formControlName="email"
+            type="email"
+            placeholder=" "
+            required
+          />
+          <label for="email">E-mail*</label>
+        </div>
+        <div class="error"
+             *ngIf="formularioLogin.get('email')?.hasError('required') && formularioLogin.get('email')?.touched">
+          El correo es obligatorio.
+        </div>
+        <div class="error"
+             *ngIf="formularioLogin.get('email')?.hasError('email') && formularioLogin.get('email')?.touched">
+          Ingresa un correo válido.
+        </div>
+
+        <!-- Contraseña -->
+        <div class="form-group">
+          <input
+            id="contrasena"
+            formControlName="contrasena"
+            type="password"
+            placeholder=" "
+            required
+          />
+          <label for="contrasena">Contraseña*</label>
+        </div>
+        <div class="error"
+             *ngIf="formularioLogin.get('contrasena')?.hasError('required') && formularioLogin.get('contrasena')?.touched">
+          La contraseña es obligatoria.
+        </div>
+
+        <!-- Botón principal -->
+        <button type="submit" [disabled]="cargando">
+          {{ cargando ? 'Entrando...' : 'Iniciar sesión' }}
+        </button>
+      </form>
+
+      <p class="mensaje" *ngIf="mensaje">{{ mensaje }}</p>
+
+      <!-- Botón alternativo -->
+      <div class="extra-actions">
+        <div class="separator"><span><strong>¿Eres nuevo cliente?</strong></span></div>
+        <button class="btn-login" (click)="irARegistro()">Crear cuenta</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,76 +1,90 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-import { ContactoService } from '../../../service/contacto.service';
-import emailjs from '@emailjs/browser';
+import { RouterModule, Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, NgForm } from '@angular/forms';
 
-/**
- * @component
- * @description Componente de contacto para solicitar tartas personalizadas.
- * Contiene un formulario para ingresar datos como email, nombre, sabor, tamaño y mensaje.
- */
+import { AuthService, Usuario } from '../../../service/auth.service';
+import {
+  SolicitudService,
+  CrearSolicitudDTO,
+  SolicitudPresupuestoDTO
+} from '../../../service/solicitud.service';
+
 @Component({
-  standalone: true,
-  imports: [FormsModule, CommonModule],
   selector: 'app-contacto',
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    HttpClientModule,
+    FormsModule
+  ],
   templateUrl: './contacto.component.html',
   styleUrls: ['./contacto.component.css']
 })
-export class ContactoComponent {
-  /**
-   * @property {Object} contacto - Datos del formulario de contacto.
-   * @property {string} contacto.email - Correo electrónico del usuario.
-   * @property {string} contacto.nombre - Nombre del usuario.
-   * @property {string} contacto.sabor - Sabor elegido para la tarta.
-   * @property {string} contacto.tamano - Tamaño de la tarta.
-   * @property {string} contacto.mensaje - Mensaje o descripción de la tarta personalizada.
-   */
-  contacto = {
-    email: '',
-    nombre: '',
-    sabor: '',
-    tamano: '',
-    mensaje: ''
-  };
+export class ContactoComponent implements OnInit {
+  // Datos del usuario en sesión
+  usuario: Usuario | null = null;
 
-  /**
-   * @constructor
-   * @param {Router} router - Servicio de navegación de Angular.
-   * @param {ContactoService} contactoService - Servicio para almacenar los datos del contacto.
-   */
+  // Campos del formulario
+  sabor = '';
+  tamano = '';
+  tema = '';
+  mensaje = '';
+  telefono = '';
+  direccion = '';
+
   constructor(
-    private router: Router,
-    public contactoService: ContactoService
+    private auth: AuthService,
+    private solicitudService: SolicitudService,
+    private router: Router
   ) {}
 
-  /**
-   * @method enviarFormulario
-   * @description Envía el formulario si es válido. Guarda los datos en el servicio y redirige a la página de factura.
-   * @param {any} form - Objeto del formulario Angular (ngForm).
-   */
-  enviarFormulario(form: any) {
-    if (form.valid) {
-      this.contactoService.setDatosContacto(this.contacto);
-      this.router.navigate(['/factura']);
-    } else {
-      alert('Por favor, completa todos los campos correctamente.');
+  ngOnInit(): void {
+    this.usuario = this.auth.getUsuario();
+    if (!this.usuario) {
+      this.router.navigate(['/login']);
     }
   }
 
-  enviarCorreo() {
-    const templateParams = {
-      nombre: this.contacto.nombre,
-      email: this.contacto.email,
-      sabor: this.contacto.sabor,
-      tamano: this.contacto.tamano,
-      mensaje: this.contacto.mensaje
+  // Getter para la imagen según tamaño
+  get rutaImagenPiso(): string | null {
+    switch (this.tamano) {
+      case '1 piso (8 porciones) 40€':  return 'assets/1piso.png';
+      case '2 pisos (14 porciones) 70€': return 'assets/2piso.png';
+      case '3 pisos (18 porciones) 100€': return 'assets/3piso.png';
+      case '4 pisos (22 porciones) 120€': return 'assets/4piso.png';
+      default: return null;
+    }
+  }
+
+  enviarFormulario(form: NgForm): void {
+    if (form.invalid) {
+      alert('Por favor completa todos los campos obligatorios con datos válidos.');
+      return;
+    }
+
+    const dto: CrearSolicitudDTO = {
+      usuarioId: this.usuario!.id,
+      tamano: this.tamano,
+      sabor: this.sabor,
+      tema: this.tema,
+      mensaje: this.mensaje.trim() || undefined,
+      telefono: this.telefono,
+      direccion: this.direccion
     };
 
-    emailjs.send('service_spnyu67', 'template_g8hlpa9', templateParams, 'tYt8n0aD7MaXFXaXQ')
-      .then(
-        response => alert('Correo enviado correctamente'),
-        error => alert('Error al enviar el correo')
-      );
+    this.solicitudService.crear(dto)
+      .subscribe({
+        next: (resp: SolicitudPresupuestoDTO) => {
+          alert('¡Tu solicitud de tarta ha sido enviada correctamente!');
+          this.router.navigate(['/dashboard']);
+        },
+        error: err => {
+          console.error('Error al enviar la solicitud:', err);
+          alert('Hubo un problema al enviar la solicitud. Intenta nuevamente.');
+        }
+      });
   }
 }

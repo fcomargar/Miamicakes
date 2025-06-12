@@ -1,0 +1,216 @@
+/* registro.component.css */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Contenedor principal */
+.registro-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color:  #9F7E7E;
+  padding-top: 100px;
+}
+
+/* Cabecera */
+.registro-header {
+  padding-top: 1rem;
+  text-align: center;
+  background-color: #9F7E7E;
+  box-shadow: 0 1px 4px #F2C4C4;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Great Vibes', cursive;
+  color: #fff;
+}
+.registro-header .logo {
+  height: 70px;
+}
+
+/* Layout de contenido: dos columnas */
+.registro-content {
+  flex: 1;
+  display: flex;
+  max-width: 1200px;
+  margin: 2rem auto;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+/* Columna izquierda */
+.registro-beneficios {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.beneficio {
+  display: flex;
+  gap: 1rem;
+}
+.beneficio .icono {
+  font-size: 2rem;
+  line-height: 1;
+}
+.beneficio h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+  color: #fff;
+}
+.beneficio p {
+  margin: 0;
+  color: #dfdfdf;
+}
+
+/* Columna derecha: formulario */
+.registro-formulario {
+  flex: 1;
+  background-color:  #F2C4C4;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+  height: fit-content;
+}
+.registro-formulario h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+.registro-formulario form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Botón principal */
+.registro-formulario button {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: #ff69b4;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: fit-content;
+  position: relative;
+  left: 34%;
+}
+.registro-formulario button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Nueva sección: extra-actions */
+.extra-actions {
+  text-align: center;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.extra-actions .btn-crear {
+  padding: 0.75rem 1.5rem;
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.extra-actions .btn-login {
+  padding: 0.5rem 1.5rem;
+  background: none;
+  color: #fff;  
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  left: 0px;
+  background-color: #9F7E7E;;
+}
+
+/* Separador como línea con texto */
+.separator {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  
+}
+.separator::before,
+.separator::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #9F7E7E;
+  margin: 5px;
+}
+.separator span {  
+  color: #574444;
+  font-size: 1rem;
+  
+}
+
+/* Imagen */
+img {
+  vertical-align: middle;
+  margin-right: 2px;
+  margin-bottom: 15px;
+}
+
+/* Estilo para mensajes de error */
+.error {
+  color: #ff0800;
+  font-size: 0.875rem;
+  margin-top: -2.40rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .registro-content {
+    flex-direction: column;
+  }
+}
+
+/* ============================= */
+/* Estilos para floating labels */
+/* ============================= */
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 1rem 0.75rem 0.25rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: none;
+  outline: none;
+  background-color: white;
+}
+
+.form-group label {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.75rem;
+  color: #666;
+  font-size: 1rem;
+  pointer-events: none;
+  transition: all 0.2s ease-out;  
+  padding: 0 0.25rem;
+}
+
+/* Label sube si input tiene foco o contenido */
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+  top: -1rem;
+  font-size: 0.75rem;
+  color: #333;
+}
+
+/* Para ocultar el placeholder real */
+.form-group input::placeholder {
+  color: transparent;
+}

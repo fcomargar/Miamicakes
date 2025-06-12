@@ -1,0 +1,374 @@
+
+
+/* Reset & Base ----------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--brand-bg);
+  color: var(--black);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Animación de entrada --------------------------------------------------- */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-slide {
+  animation: fadeSlideUp 0.6s ease both;
+}
+
+/* ====================================================== */
+/*       MENÚ HORIZONTAL DE NAVEGACIÓN (dashboard-nav)     */
+/* ====================================================== */
+.dashboard-nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--brand-pink);
+  box-shadow: var(--shadow-md);
+  z-index: 500;
+  margin-top: 95px;
+
+}
+.dashboard-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.75rem 1rem;
+}
+.dashboard-nav ul li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: var(--white);
+  font-weight: 500;
+  transition: var(--transition);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius);
+  user-select: none;
+}
+.dashboard-nav ul li .icon {
+  width: 18px;
+  height: 18px;
+  fill: var(--white);
+}
+.dashboard-nav ul li:hover,
+.dashboard-nav ul li.active {
+  background-color: var(--brand-pink-dark);
+}
+
+/* ------------------------------------------------------ */
+/*      CONTENIDO PRINCIPAL (debajo de dashboard-nav)      */
+/* ------------------------------------------------------ */
+.content {
+  margin-top: 4rem; /* espacio para separar el nav fijo */
+  padding: 1rem 1.5rem 2rem 1.5rem;
+  min-height: 50vh;
+  border-bottom: 6px solid #F2C4C4;
+}
+
+/* ====================================================== */
+/*             ESTILOS PARA DASHBOARD / SECCIONES          */
+/* ====================================================== */
+.dashboard-container {
+  
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  
+}
+
+/* Cabecera centrada */
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.dashboard-header h2 {
+  font-size: 2.5rem;
+  color: var(--brand-pink-dark);
+}
+
+/* Secciones principales */
+.section-dashboard {
+  margin-top: 2.5rem;
+}
+.section-dashboard h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--brand-pink-dark);
+  margin-bottom: 1rem;
+}
+
+/* Listado de tarjetas */
+.card-list {
+  display: grid;
+  gap: 1.5rem;
+}
+.card-item {
+  background: var(--white);
+  border: 1px solid var(--brand-border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+.card-item:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.card-item p {
+  margin: 0.4rem 0;
+  color: var(--black);
+}
+
+/* Sub-listado de presupuestos dentro de una solicitud */
+.inner-card-list {
+  margin-top: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+.inner-card-item {
+  background: #fdfdfd;
+  border: 1px solid var(--brand-border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+.inner-card-item:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+.inner-card-item p {
+  margin: 0.3rem 0;
+}
+
+/* Texto “sin datos” */
+.sin-datos {
+  font-style: italic;
+  color: var(--gray-muted);
+  padding: 0.75rem 0;
+}
+
+/* Contenedor de acciones/footer */
+.footer-actions {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* ====================================================== */
+/*          ESTILOS FORMULARIO (info / security / delete) */
+/* ====================================================== */
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  background: var(--white);
+  border: 1px solid var(--brand-border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+form h2 {
+  text-align: center;
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  color: var(--brand-pink-dark);
+}
+.form-group {
+  margin-bottom: 1.25rem;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+.form-group input {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--brand-border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+.form-group input:focus {
+  outline: none;
+  border-color: var(--brand-pink-dark);
+  box-shadow: 0 0 0 3px rgba(255, 143, 163, 0.2);
+}
+
+/* Botones del formulario */
+.btn-actualizar-info,
+.btn-actualizar-pass {
+  margin-top: 1rem;
+  width: 100%;
+  justify-content: center;
+}
+
+/* Botones generales */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  font-weight: 500;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+  user-select: none;
+}
+.btn svg.icon {
+  fill: currentColor;
+}
+.btn-primary {
+  margin-bottom: 15px;
+  background: linear-gradient(135deg, var(--brand-pink-dark), var(--brand-pink));
+  color: var(--white);
+}
+.btn-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+.btn-danger {
+  background: #ff5252;
+  color: var(--white);
+}
+.btn-danger:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-descargar {
+  margin-top: 0.5rem;
+  background: #6c757d;
+  color: #fff;
+}
+.btn-descargar:hover {
+  filter: brightness(1.1);
+}
+
+/* Botón “Borrar Cuenta” centrado */
+.delete-section {
+  max-width: 500px;
+  margin: 0 auto;
+  background: var(--white);
+  border: 1px solid var(--brand-border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+.delete-section .warning-text {
+  margin-bottom: 1.5rem;
+  color: var(--black);
+  line-height: 1.4;
+}
+.delete-section .btn-borrar-cuenta {
+  margin-top: 1rem;
+  width: 100%;
+  justify-content: center;
+}
+
+/* ====================================================== */
+/*                RESPONSIVE (≥ 768px)                    */
+/* ====================================================== */
+@media (min-width: 768px) {
+  .card-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .inner-card-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =============================== */
+/*   ESTILOS DEL MODAL/POPUP       */
+/* =============================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal-content {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 1.5rem 2rem;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  position: relative;
+}
+
+/* Spinner de carga */
+.payment-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid var(--brand-pink-dark);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Ícono de éxito */
+.payment-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.payment-success svg.icon-check {
+  stroke: #28a745;
+}
+
+/* Margen entre los botones dentro del modal */
+.modal-content .btn {
+  margin: 0.5rem 0.25rem;
+  width: calc(50% - 0.5rem);
+}

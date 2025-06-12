@@ -1,0 +1,200 @@
+<!-- admin-dashboard.component.html -->
+<ng-container *ngIf="isAdmin; else notFound">
+  <!-- ================================ -->
+  <!--   MENÚ HORIZONTAL DE NAVEGACIÓN  -->
+  <!-- ================================ -->
+  <nav class="dashboard-nav">
+    <ul>
+      <li
+        (click)="seccionSeleccionada = 'solicitudes'"
+        [class.active]="seccionSeleccionada === 'solicitudes'"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-dashboard" viewBox="0 0 24 24">
+          <path
+            d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8v-10h-8v10zm0-18v6h8V3h-8z"
+            fill="currentColor"
+          />
+        </svg>
+        Solicitudes
+      </li>
+      <li
+        (click)="seccionSeleccionada = 'seguridad'"
+        [class.active]="seccionSeleccionada === 'seguridad'"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-security" viewBox="0 0 24 24">
+          <path
+            d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 18a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm1-7h-2V7h2v5z"
+            fill="currentColor"
+          />
+        </svg>
+        Seguridad
+      </li>      
+    </ul>     
+  </nav>
+
+  <!-- ================================ -->
+  <!--        CONTENIDO PRINCIPAL       -->
+  <!-- ================================ -->
+  <div class="content">
+    <!-- Solicitudes -->
+    <div *ngIf="seccionSeleccionada === 'solicitudes'" class="fade-slide">
+      <div class="dashboard-container">
+        <section class="section-dashboard">
+          <h3>Solicitudes de todos los usuarios</h3>
+          <ul class="card-list">
+            <li *ngFor="let s of solicitudes; trackBy: trackById" class="card-item">
+              <p><strong>ID:</strong> {{ s.id }}</p>
+              <p><strong>Usuario:</strong> {{ s.usuarioNombre }} ({{ s.usuarioEmail }})</p>
+              <p><strong>Teléfono:</strong> {{ s.telefono }}</p>
+              <p><strong>Dirección:</strong> {{ s.direccion }}</p>
+              <p><strong>Tamaño:</strong> {{ s.tamano }}</p>
+              <p><strong>Sabor:</strong> {{ s.sabor }}</p>
+              <p><strong>Tema:</strong> {{ s.tema }}</p>
+              <p><strong>Mensaje:</strong> {{ s.mensaje || '—' }}</p>
+              <p><strong>Estado:</strong> {{ s.estado }}</p>
+              <p><strong>Creación:</strong> {{ s.fechaCreacion | date:'short' }}</p>
+
+              <div class="acciones-solicitud" *ngIf="s.estado === 'PENDIENTE'">
+                <button class="btn btn-primary" (click)="aceptar(s)">Aceptar</button>
+                <button class="btn btn-danger" (click)="rechazar(s)">Rechazar</button>
+              </div>
+
+              <div *ngIf="presupuestosMap[s.id]?.length" class="inner-card-list">
+                <h4>Presupuestos asociados</h4>
+                <ul>
+                  <li *ngFor="let p of presupuestosMap[s.id]" class="inner-card-item">
+                        <!-- dentro de <li *ngFor="let p of presupuestosMap[s.id]"> -->
+                    <p><strong>Estado:</strong> {{ p.estado }}</p>
+
+                     <ng-container *ngIf="['ENVIADO','FINALIZADO'].includes(p.estado)">
+                      <p><strong>Precio:</strong> {{ p.precio | number:'1.0-0' }} €</p>
+                      <p><strong>Enviado:</strong> {{ p.fechaEnvio | date:'short' }}</p>
+                    </ng-container>
+
+                    <ng-container *ngIf="['RECHAZADO','PENDIENTE_DE_PAGO'].includes(p.estado)">
+                      <p><strong>Precio:</strong> {{ p.precio | number:'1.0-0' }} €</p>
+                      
+                    </ng-container>
+
+                    <!-- Botón Marcar Enviado (ya tenías) -->
+                    <button
+                      class="btn btn-secondary"
+                      *ngIf="p.estado === 'PAGADO'"
+                      (click)="marcarEnviado(p)"
+                    >
+                      Marcar Enviado
+                    </button>
+
+                    <!-- NUEVO: botón Entregar -->
+                    <button
+                      class="btn btn-success"
+                      *ngIf="p.estado === 'ENVIADO'"
+                      (click)="entregarPresupuesto(p, s.id)"
+                    >
+                      Entregar
+                    </button>
+
+                    <!-- Botón Descargar factura, si lo quieres tras ENTREGADO o FINALIZADO -->
+                    <button
+                      class="btn btn-secondary btn-descargar"
+                      *ngIf="p.estado === 'FINALIZADO'"
+                      (click)="descargarFactura(s, p)"
+                    >
+                      Descargar factura
+                    </button>
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="nuevo-presupuesto"
+                *ngIf="(!presupuestosMap[s.id] || presupuestosMap[s.id].length === 0)
+                  && s.estado === 'ACEPTADA'"
+              >
+                <label>Nuevo precio:</label>
+                <input
+                  type="number"
+                  [(ngModel)]="precioNuevo[s.id]"
+                  placeholder="€"
+                />
+                <button class="btn btn-primary" (click)="crearPresupuesto(s)">
+                  Crear presupuesto
+                </button>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+     
+
+
+    <!-- Seguridad / Cambiar Contraseña -->
+    <div *ngIf="seccionSeleccionada === 'seguridad'" class="security-section fade-slide">
+      <form (ngSubmit)="cambiarContrasena()" #passForm="ngForm">
+        <h2>Seguridad / Cambiar Contraseña</h2>
+        <div class="form-group">
+          <label for="nuevaContrasena">Nueva Contraseña:</label>
+          <input
+            id="nuevaContrasena"
+            name="nuevaContrasena"
+            type="password"
+            class="form-control"
+            [(ngModel)]="nuevaContrasena"
+            minlength="6"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="confirmarContrasena">Confirmar Nueva Contraseña:</label>
+          <input
+            id="confirmarContrasena"
+            name="confirmarContrasena"
+            type="password"
+            class="form-control"
+            [(ngModel)]="confirmarContrasena"
+            minlength="6"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary btn-actualizar-pass"
+          [disabled]="passForm.invalid"
+        >
+          <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-lock"
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+        >
+          <path
+            d="M12 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm6-9h-1V7a5 5 0 0 0-10 0v1H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2zm-8-1a3 3 0 0 1 6 0v1H10V7z"
+            fill="currentColor"
+          />
+        </svg>
+          Cambiar Contraseña
+        </button>
+      </form>
+    </div>
+    <!-- === NUEVO: botón Cerrar Sesión === -->
+      <div class="footer-actions">
+        <button (click)="cerrarSesion()" class="btn btn-danger btn-cerrar-sesion">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-logout" viewBox="0 0 24 24" width="20" height="20">
+            <path d="M16 17l5-5-5-5M21 12H9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M13 5H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Cerrar sesión
+        </button>
+      </div>
+      <!-- === fin botón Cerrar Sesión === -->
+  </div>  
+</ng-container>
+
+<ng-template #notFound>
+  <div class="not-found-screen">
+    <h1>NOT FOUND</h1>
+  </div>
+</ng-template>
